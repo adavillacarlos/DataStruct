@@ -90,14 +90,13 @@ void mode(int freq[], int *freqsize, Statistician answer, int count){
 
 void histogram(Statistician answer, int count){
 	printf("\nHistogram: \n");
-	int i, j,k=0,l=0,m=0;
+	int i,j,l=0,m=0;
 	for(i=9;i>=1;i--){
 		printf("[%d]",i);
 		l=0;
-		for(j=k;j<count;j++){
+		for(j=count;j>=0;j--){
 			if(answer[j]==i){
 				printf(" *");
-				k++;
 				l++;
 			}
 		}
@@ -142,3 +141,4 @@ void Exit(Statistician answer){
 	printf("Program terminated");
 	exit(1);
 }
+
