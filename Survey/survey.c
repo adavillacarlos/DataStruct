@@ -62,7 +62,8 @@ int range(Statistician answer, int count){
 }
 
 void mode(int freq[], int *freqsize, Statistician answer, int count){
-	int i,item=0,max=0; 
+	int i,item=0,max=0;
+	int check = 0;
 	int respons[9]={0};
 
 	for(i=0;i<count;i++){
@@ -70,12 +71,21 @@ void mode(int freq[], int *freqsize, Statistician answer, int count){
 		respons[item-1]++;
 	}
 	
-	for(i=0;i<count;i++){
+	for(i=0;i<9;i++){
 		if(max<=respons[i])
 			max = respons[i];
 	}
 	
-	if(max==1){
+	for(i=0;i<9;i++){
+		if(respons[i] == 0) continue; 
+		if(respons[i] != max){
+			check = 1; 
+			break; 
+		}
+		check=0;
+	}
+	
+	if(check==0){
 		printf("None");
 	} else {
 		for(i=0;i<9;i++){
