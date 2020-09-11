@@ -91,7 +91,7 @@ void mode(int freq[], int *freqsize, Statistician answer, int count){
 void histogram(Statistician answer, int count){
 	printf("\nHistogram: \n");
 	int i, j,k=0,l=0,m=0;
-	for(i=1;i<=9;i++){
+	for(i=9;i>=1;i--){
 		printf("[%d]",i);
 		l=0;
 		for(j=k;j<count;j++){
