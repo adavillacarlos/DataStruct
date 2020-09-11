@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
 	int SIZE = 10;
 	int i;
 	int freqsize=0;
-	int *freq = (int*) calloc(SIZE,sizeof(int));
+	int *freq = (int*) calloc(freqsize,sizeof(int));
 	int item, count=0,choice;
 	Statistician answer = (Statistician) malloc(sizeof(int)*SIZE);
 	while(1){

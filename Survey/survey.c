@@ -90,12 +90,12 @@ void mode(int freq[], int *freqsize, Statistician answer, int count){
 	} else {
 		for(i=0;i<9;i++){
 			if(respons[i]==max){
-				freq[i]=i+1;
+				freq[*freqsize]=i+1;
 				(*freqsize)++;
+				freq = (int *) realloc (freq,(*freqsize)*sizeof(int));
 			}
 		}
 	} 
-
 }
 
 void histogram(Statistician answer, int count){
