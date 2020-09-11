@@ -16,9 +16,9 @@ void mode(int freq[], int *freqsize, Statistician answer, int count);
 void histogram(Statistician answer, int count);
 //	Produces a histogram to aid in determining the mode graphically. 
 //	Use asterisks to represents number of occurrences.
+// used a horizontal histogram for representation
 
 int input();
-void displayAll(int freq[],int *freqsize,Statistician answer, int count);
 void menu();
 void promptContinue();
 int choose();

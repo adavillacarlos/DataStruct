@@ -90,17 +90,23 @@ void mode(int freq[], int *freqsize, Statistician answer, int count){
 
 void histogram(Statistician answer, int count){
 	printf("\nHistogram: \n");
-	int i, j,k=0;
+	int i, j,k=0,l=0,m=0;
 	for(i=1;i<=9;i++){
 		printf("[%d]",i);
+		l=0;
 		for(j=k;j<count;j++){
 			if(answer[j]==i){
-				printf("*");
+				printf(" *");
 				k++;
+				l++;
 			}
 		}
-		printf("\n");
+		if(m<=l) m = l;
+			printf("\n");
 	}
+	printf("   ");
+	for(i=1;i<=m;i++) 
+		printf(" %d",i);
 }
 
 
@@ -114,9 +120,7 @@ void menu(){
 	printf("\n6. Min");
 	printf("\n7. Range");
 	printf("\n8. Histogram");
-	printf("\n9. Display All");
-	printf("\n10. Exit");
-	printf("\n11. Array");
+	printf("\n9. Exit");
 }
 
 int choose(){
@@ -124,17 +128,6 @@ int choose(){
 	printf("\nEnter choice: ");
 	scanf("%d",&choice);
 	return choice; 
-}
-
-void displayAll(int freq[],int *freqsize,Statistician answer, int count){
-	printf("\nMean: %.2f", mean(answer,count));
-	printf("\nMedian: %.2f",median(answer,count));
-	printf("\nMode: ");
-		mode(freq,freqsize,answer,count);
-	printf("\nMax: %d",max(answer,count));
-	printf("\nMin: %d",min(answer,count));
-	printf("\nRange: %d",range(answer,count));
-	histogram(answer,count);
 }
 
 void promptContinue(){

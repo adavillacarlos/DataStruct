@@ -36,9 +36,7 @@ int main(int argc, char *argv[]) {
 						break; 
 			case 8:		histogram(answer,count);
 						break;
-			case 9:		displayAll(freq,&freqsize,answer,count);
-						break; 
-			case 10:	Exit(answer);	
+			case 9:	Exit(answer);	
 						break; 
 			default:	printf("Please input 1-10");
 		}
