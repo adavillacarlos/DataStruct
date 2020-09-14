@@ -142,18 +142,8 @@ int disjoint(Set s1, Set s2){
 }
 
 int equal(Set s1, Set s2){
-//other way of checking for equal 
-//	nodeptr ptr1 = s1; 
-//	nodeptr ptr2 = s2;
-//	while(ptr1!=NULL && ptr2!=NULL){
-//		if(contains(s1,ptr2->data)==0)
-//			return 0;
-//		if(contains(s2, ptr1->data)==0)
-//			return 0;
-//		ptr1 = ptr1->next;
-//		ptr2 = ptr2->next;
-//	}
-//	return 1; 
+	//calls the subset to check if the all elements in the set
+	// are present in the opposite set. 
 	if(subset(s1,s2)==1 && subset(s2,s1)==1)
 		return 1; 
 	return 0;
