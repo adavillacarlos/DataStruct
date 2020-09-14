@@ -3,6 +3,7 @@
 #include "setList.h"
 
 Set initialize(){
+	//initializes the head to NULL
 	Set head = NULL;
 	return head; 
 }
@@ -18,6 +19,7 @@ void display(Set s){
 
 int contains(Set s, int elem){
 	nodeptr ptr = s; 
+	//check if the element has a copy already in the set
 	while(ptr!=NULL){
 		if(ptr->data==elem)
 			return 1; 
@@ -27,17 +29,23 @@ int contains(Set s, int elem){
 }
 nodeptr createNode(int elem){
 	nodeptr ptr; 
+	//allocates address for the node
 	ptr = (nodeptr) malloc (sizeof(Node));
 	ptr->data = elem; 
+	//initializes the next node for NULL
 	ptr->next = NULL;
 	return ptr;
 }
 
 Set add(Set s, int elem){
 	nodeptr temp; 
+	//checks first if the element has a copy already
 	if(contains(s,elem) == 0){
+		//creates the node & places it as well. 
 		temp = createNode(elem);
+		//initialize the next node to the set 
 		temp->next = s; 
+		//initialize the set to the temp set. 
 		s = temp;
 	}
 	return s; 
@@ -48,10 +56,12 @@ void getUnion(Set result, Set s1, Set s2){
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2; 
 	while(ptr1!=NULL){
+		//adds the first part of the result
 		result = add(result,ptr1->data);
 		ptr1 = ptr1->next;
 	}
 	while(ptr2!=NULL){
+		//checks for the duplicates then adds it to the result set if there is none 
 		if(contains(result,ptr2->data)==0)
 			result=add(result,ptr2->data);
 		ptr2 = ptr2->next;
@@ -64,6 +74,8 @@ void intersection(Set result, Set s1, Set s2){
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2; 
 	while(ptr1!=NULL){
+		//checks copies of element of set 1 in set 2
+		//adds if there is a duplicate on the result. 
 		if(contains(s2,ptr1->data)==1)
 			result = add(result,ptr1->data); 
 		ptr1 = ptr1->next;
@@ -76,6 +88,8 @@ void difference(Set result, Set s1, Set s2){
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2;
 	while(ptr1!=NULL){
+		//checks if there is no copy of element of set 1 in set 2 
+		//and if there is no copy of the element, add it on the result
 		if(contains(s2,ptr1->data)==0)
 			result = add(result,ptr1->data);
 		ptr1 = ptr1->next;
@@ -87,11 +101,15 @@ void symmetricdifference(Set result, Set s1, Set s2){
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2; 
 	while(ptr1!=NULL){
+		//checks if there is no copy of elements of set 1 in set 2
+		//adds them if there is none.
 		if(contains(s2,ptr1->data)==0)
 			result = add(result,ptr1->data);
 		ptr1 = ptr1->next;
 	}
 	while(ptr2!=NULL){
+		//checks if there is no copy of elements of set 2 in set 1
+		//adds them if there is none
 		if(contains(s1,ptr2->data)==0)
 			result = add(result,ptr2->data);
 		ptr2 = ptr2->next;
@@ -103,6 +121,7 @@ int subset(Set s1, Set s2){
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2;  
 	while(ptr1!=NULL){
+		//checks if there is no element of set 1 in set 2
 		if(contains(s2,ptr1->data)==0)
 			return 0;
 		ptr1 = ptr1->next;
@@ -114,6 +133,7 @@ int disjoint(Set s1, Set s2){
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2; 
 	while(ptr1!=NULL){
+		//checks if there is element of set 1 in set 2
 		if(contains(s2,ptr1->data)==1)
 			return 0; 
 		ptr1 = ptr1->next;
@@ -122,6 +142,7 @@ int disjoint(Set s1, Set s2){
 }
 
 int equal(Set s1, Set s2){
+//other way of checking for equal 
 //	nodeptr ptr1 = s1; 
 //	nodeptr ptr2 = s2;
 //	while(ptr1!=NULL && ptr2!=NULL){

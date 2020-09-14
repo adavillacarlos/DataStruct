@@ -43,12 +43,28 @@ int disjoint(Set s1, Set s2);
 int equal(Set s1, Set s2);
 //- two sets are equal if they have exactly the same elements
 
+
+//helper functions
 nodeptr createNode(int elem);
+//- creates a node
 
 void menu(); 
+//-main menu
+
 void menuSet();
+//-submenu for the sets 
+
 int choose();
+//-input choice for the main menu
+
 int inputSet();
+//-input choice for the submenu
+
 int inputElem();
+//-add element in the set
+
 void Exit();
+//-terminates the program
+
 void promptUser();
+//-clears the terminal 
