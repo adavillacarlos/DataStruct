@@ -27,6 +27,7 @@ int contains(Set s, int elem){
 	}
 	return 0;
 }
+
 nodeptr createNode(int elem){
 	nodeptr ptr; 
 	//allocates address for the node
@@ -51,7 +52,7 @@ Set add(Set s, int elem){
 	return s; 
 }
 
-void getUnion(Set result, Set s1, Set s2){
+Set getUnion(Set result, Set s1, Set s2){
 	result = initialize();
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2; 
@@ -66,10 +67,11 @@ void getUnion(Set result, Set s1, Set s2){
 			result=add(result,ptr2->data);
 		ptr2 = ptr2->next;
 	}
-	display(result);
+	printf("\nUnion Successful");
+	return result; 
 }
 
-void intersection(Set result, Set s1, Set s2){
+Set intersection(Set result, Set s1, Set s2){
 	result = initialize();
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2; 
@@ -80,10 +82,11 @@ void intersection(Set result, Set s1, Set s2){
 			result = add(result,ptr1->data); 
 		ptr1 = ptr1->next;
 	}
-	display(result);
+	printf("\nIntersection Successful");
+	return result; 
 }
 
-void difference(Set result, Set s1, Set s2){
+Set difference(Set result, Set s1, Set s2){
 	result = initialize();
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2;
@@ -94,10 +97,11 @@ void difference(Set result, Set s1, Set s2){
 			result = add(result,ptr1->data);
 		ptr1 = ptr1->next;
 	}
-	display(result);
+	printf("\nDifference Successful");
+	return result; 
 }
 
-void symmetricdifference(Set result, Set s1, Set s2){
+Set symmetricdifference(Set result, Set s1, Set s2){
 	nodeptr ptr1 = s1; 
 	nodeptr ptr2 = s2; 
 	while(ptr1!=NULL){
@@ -114,7 +118,8 @@ void symmetricdifference(Set result, Set s1, Set s2){
 			result = add(result,ptr2->data);
 		ptr2 = ptr2->next;
 	}
-	display(result);
+	printf("\nSymmetric Difference Successful");
+	return result;
 }
 
 int subset(Set s1, Set s2){
@@ -168,6 +173,7 @@ void menuSet(){
 	printf("\n1. Set 1");
 	printf("\n2. Set 2");
 }
+
 int choose(){
 	int choice; 
 	printf("\nPlease enter a number (1-11): "); 
@@ -181,12 +187,14 @@ int inputSet(){
 	scanf("%d",&ans);
 	return ans;
 }
+
 int inputElem(){
 	int elem;
 	printf("\nPlease enter an element: ");
 	scanf("%d",&elem); 
 	return elem;
 }
+
 void Exit(){
 	printf("\nProgram Terminated");
 	exit(1);

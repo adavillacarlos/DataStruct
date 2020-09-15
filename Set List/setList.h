@@ -17,19 +17,19 @@ Set add(Set s, int elem);
 int contains(Set s, int elem);
 //- search the array elements for the value elem
 
-void getUnion(Set result, Set s1, Set s2);
+Set getUnion(Set result, Set s1, Set s2);
 //- store in the set result the set resulting from the union of s1 and s2
 //- x is an element of s1 union s2 if x is an element of s1 or x is an element of s2
 
-void intersection(Set result, Set s1, Set s2);
+Set intersection(Set result, Set s1, Set s2);
 //- store in the set result the set resulting from the intersection of s1 and s2
 //- x is an element of s1 intersection s2 if x is an element of s1 and x is an element of s2
 
-void difference(Set result, Set s1, Set s2);
+Set difference(Set result, Set s1, Set s2);
 //- store in the set result the set resulting from the difference of s1 and s2
 //- x is an element of s1 - s2 if x is an element of s1 and x is not an element of s2
 
-void symmetricdifference(Set result, Set s1, Set s2);
+Set symmetricdifference(Set result, Set s1, Set s2);
 //- store in the set result the set resulting from the symmetric difference of s1 and s2
 //- x is an element of s1 - s2 if x is an element of s1 and x is not an element of s2 and vice
 //versa

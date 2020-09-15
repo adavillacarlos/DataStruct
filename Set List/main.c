@@ -24,11 +24,14 @@ int main(int argc, char *argv[]) {
 						break; 	
 						
 			case 2:		menuSet();
+						printf("\n3. Set Result");
 						ans = inputSet();
 						if(ans==1)
 							display(s1);
 						else if (ans==2)
 							display(s2);
+						else if (ans==3)
+							display(result);
 						else 
 							printf("\nPlease enter 1 or 2");
 						break;
@@ -48,16 +51,16 @@ int main(int argc, char *argv[]) {
 							printf("\nIt is not in the Set");
 						break; 
 			
-			case 4: 	getUnion(result,s1,s2);
+			case 4: 	result=getUnion(result,s1,s2);
 						break; 
 						
-			case 5:		intersection(result,s1,s2);
+			case 5:		result=intersection(result,s1,s2);
 						break; 
 						
-			case 6:		difference(result,s1,s2);
+			case 6:		result=difference(result,s1,s2);
 						break; 
 			
-			case 7:		symmetricdifference(result,s1,s2);
+			case 7:		result=symmetricdifference(result,s1,s2);
 						break; 
 			
 			case 8:		flag = subset(s1,s2);
