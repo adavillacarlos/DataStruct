@@ -17,7 +17,6 @@ int isValidInput(stackItem symbols[]){
 	return ans; 
 }
 
-
 Stack newStack(){
 	Stack s = (Stack) malloc(sizeof(STACK_HEAD));
 	s->count = 0; 
@@ -37,8 +36,9 @@ void freeStack(Stack s){
 	while(s->top!=NULL){
 		temp = s->top;
 		s->top = s->top->next;
-		temp->next = NULL; 
+//		temp->next = NULL; 
 		free(temp);
+		(s->count)--;
 	}
 	return;
 }
