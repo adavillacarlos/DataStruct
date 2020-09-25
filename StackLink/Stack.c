@@ -36,11 +36,10 @@ void freeStack(Stack s){
 	while(s->top!=NULL){
 		temp = s->top;
 		s->top = s->top->next;
-//		temp->next = NULL; 
+		temp->next = NULL; 
 		free(temp);
 		(s->count)--;
 	}
-	return;
 }
 
 void push(Stack s,stackItem item){
@@ -48,7 +47,6 @@ void push(Stack s,stackItem item){
 	temp->next = s->top;
 	s->top = temp;
 	(s->count)++; 
-	return;
 }
 
 void pop(Stack s){
@@ -58,7 +56,6 @@ void pop(Stack s){
 	temp->next = NULL;
 	free(temp);
 	(s->count)--;
-	return;
 }
 
 stackItem stackTop(Stack s){
@@ -116,7 +113,6 @@ void display(Stack s){
 		ptr = ptr->next; 
 	}
 	printf("\n");
-	return;
 }
 
 void printDisplay(Stack s,int status){
@@ -127,11 +123,4 @@ void printDisplay(Stack s,int status){
 		}
 	} else
 		printf("Stack is empty due to balanced symbols\n");
-	return;
-}
-
-void Exit(){
-	printf("Program Terminated");
-	exit(1);
-	return; 
 }

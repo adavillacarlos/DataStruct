@@ -15,7 +15,10 @@ int main(int argc, char *argv[]) {
 		}while(flag!=1); 
 		flag=0;
 		status = isValid(s,symbols);
-		printf("\nValid: %d\n",status);
+		if(status==1)
+			printf("\nMatch\n");
+		else 
+			printf("\nMismatch\n");
 		printDisplay(s,status);
 		printf("\nDo you want to continue? (1/0): ");
 		scanf("%d",&ask);

@@ -26,8 +26,7 @@ void display(Stack s);
 
 Nodeptr createNode(stackItem item);
 int isValid(Stack s, stackItem symbols[]);
+int isPair(stackItem item,stackItem top);
 int isValidInput(stackItem symbols[]);
 void printDisplay(Stack s,int status);
-int isPair(stackItem item,stackItem top);
-void Exit();
 
