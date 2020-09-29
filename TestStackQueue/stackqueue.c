@@ -55,6 +55,17 @@ int stackTop(Stack s){
 	return s->top->data;	
 }
 
+void freeStack(Stack s){
+	Nodeptr temp;
+	while(s->top!=NULL){
+		temp = s->top;
+		s->top = s->top->next;
+		temp->next = NULL; 
+		free(temp);
+		(s->count)--;
+	}
+}
+
 //Queue
 void enqueue(Queue q, int item){
 	Nodeptr temp = createNode(item);
@@ -91,6 +102,17 @@ int isQueueEmpty(Queue q){
 
 int queueFront(Queue q){
 	return q->front->data; 
+}
+
+void freeQueue(Queue q){
+	Nodeptr temp; 
+	while(q->front!=NULL){
+		temp = q->front;
+		q->front = q->front->next;
+		temp->next = NULL; 
+		free(temp);
+		(q->count)--;
+	}
 }
 
 

@@ -5,10 +5,10 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) {
-	Stack inputStack = createStack();
-	Stack outputStack = createStack(); 
-	Queue inputQueue = createQueue();
-	Queue outputQueue = createQueue();
+	Stack inputS = createStack();
+	Stack outputS = createStack(); 
+	Queue inputQ = createQueue();
+	Queue outputQ = createQueue();
 	int deleteTop, deleteFront; 
 	int exit = 0; 
 	int choice,item; 
@@ -19,15 +19,15 @@ int main(int argc, char *argv[]) {
 		choice = getChoice();
 		switch(choice){
 			case 1:  item = getItem();
-					 push(inputStack,item);
-					 enqueue(inputQueue,item);
+					 push(inputS,item);
+					 enqueue(inputQ,item);
 					 break; 
-			case 2:  deleteTop = stackTop(inputStack);
-					 pop(inputStack);
-					 enqueue(outputQueue,deleteTop);
-					 deleteFront = queueFront(inputQueue);
-					 dequeue(inputQueue);
-					 push(outputStack,deleteFront);
+			case 2:  deleteTop = stackTop(inputS);
+					 pop(inputS);
+					 enqueue(outputQ,deleteTop);
+					 deleteFront = queueFront(inputQ);
+					 dequeue(inputQ);
+					 push(outputS,deleteFront);
 					 break; 
 			case 3:  exit=1;
 					 break; 
@@ -35,19 +35,22 @@ int main(int argc, char *argv[]) {
 		}
 		if(choice!=3)
 			promptUser();
-		
-		if(isStackEmpty(inputStack)==1 && isQueueEmpty(inputQueue)==1){
-			printf("\nOutput Stack: "); 
-			displayStack(outputStack);
-			printf("\nOutput Queue: ");
-			displayQueue(outputQueue);
-		} else {
+		if(isStackEmpty(inputS)==1 && isQueueEmpty(inputQ)==1)
+			exit = 1;
+		else {
 			printf("\nInput Stack: ");
-			displayStack(inputStack);
+			displayStack(inputS);
 			printf("\nInput Queue: ");
-			displayQueue(inputQueue);
-		}
-		
+			displayQueue(inputQ);
+		}		
 	}while(exit!=1);
+	if(isStackEmpty(inputS)==1 && isQueueEmpty(inputQ)==1){
+		printf("\nOutput Stack: "); 
+		displayStack(outputS);
+		free(outputS);
+		printf("\nOutput Queue: ");
+		displayQueue(outputQ);
+		free(outputQ);
+	}
 	return 0;
 }
