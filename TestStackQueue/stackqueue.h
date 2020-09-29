@@ -28,6 +28,7 @@ void pop(Stack s);
 void displayStack(Stack s);
 int isStackEmpty(Stack s);
 int stackTop(Stack s);
+void freeStack(Stack s);
 
 void enqueue(Queue q, int item);
 void dequeue(Queue q);

@@ -41,7 +41,7 @@ void pop(Stack s){
 void displayStack(Stack s){
 	Nodeptr ptr = s->top;
 	while(ptr!=NULL){
-		printf("%c ", ptr->data);
+		printf("%d ", ptr->data);
 		ptr = ptr->next; 
 	}
 	printf("\n");
@@ -55,6 +55,7 @@ int stackTop(Stack s){
 	return s->top->data;	
 }
 
+//Queue
 void enqueue(Queue q, int item){
 	Nodeptr temp = createNode(item);
 	if(isQueueEmpty(q))
@@ -96,7 +97,7 @@ int queueFront(Queue q){
 //Helper Functions
 
 void menu(){
-	printf("MENU\n");
+	printf("\nMENU\n");
 	printf("\n[1] Insert Integer");
 	printf("\n[2] Delete Integer");
 	printf("\n[3] Exit");
