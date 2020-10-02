@@ -30,12 +30,14 @@ void push(Stack s,int item){
 	(s->count)++; 
 }
 
-void pop(Stack s){
+int pop(Stack s){
 	Nodeptr	temp = s->top; 
+	int ans = temp->data; 
 	s->top = temp->next; 
 	temp->next = NULL;
 	free(temp);
 	(s->count)--;
+	return ans; 
 }
 
 void displayStack(Stack s){
@@ -77,14 +79,16 @@ void enqueue(Queue q, int item){
 	(q->count)++;
 }
 
-void dequeue(Queue q){
+int dequeue(Queue q){
 	Nodeptr temp = q->front; 
+	int ans = temp->data;
 	if(q->count==1)
 		q->rear=NULL;
 	q->front = q->front->next; 
 	temp->next = NULL;
 	free(temp);
 	q->count--;	
+	return ans; 
 }
 
 void displayQueue(Queue q){
@@ -115,9 +119,7 @@ void freeQueue(Queue q){
 	}
 }
 
-
 //Helper Functions
-
 void menu(){
 	printf("\nMENU\n");
 	printf("\n[1] Insert Integer");

@@ -9,48 +9,53 @@ int main(int argc, char *argv[]) {
 	Stack outputS = createStack(); 
 	Queue inputQ = createQueue();
 	Queue outputQ = createQueue();
-	int deleteTop, deleteFront; 
+	int deleteTop, deleteFront,choice,item; 
+	int flag=0;
 	int exit = 0; 
-	int choice,item; 
-	
 	do{
-		exit=0;
 		menu();
 		choice = getChoice();
 		switch(choice){
 			case 1:  item = getItem();
 					 push(inputS,item);
 					 enqueue(inputQ,item);
+					 flag=1;
 					 break; 
-			case 2:  deleteTop = stackTop(inputS);
-					 pop(inputS);
-					 enqueue(outputQ,deleteTop);
-					 deleteFront = queueFront(inputQ);
-					 dequeue(inputQ);
-					 push(outputS,deleteFront);
-					 break; 
+			case 2: if(flag==1){
+					 	deleteTop = pop(inputS);
+					 	enqueue(outputQ,deleteTop);
+					 	deleteFront=dequeue(inputQ);
+					 	push(outputS,deleteFront);
+				   	} else {
+				   		printf("\nPlease insert a number first\n");
+				   		flag=0;
+					}
+					 break;
 			case 3:  exit=1;
+					 printf("\nProgram terminated\n");
 					 break; 
 			default: printf("\nPlease enter a right choice\n");
 		}
+		
 		if(choice!=3)
 			promptUser();
-		if(isStackEmpty(inputS)==1 && isQueueEmpty(inputQ)==1)
-			exit = 1;
-		else {
+		if(isStackEmpty(inputS)!=1 && isQueueEmpty(inputQ)!=1){
 			printf("\nInput Stack: ");
 			displayStack(inputS);
 			printf("\nInput Queue: ");
 			displayQueue(inputQ);
-		}		
+		} else if (flag!=0)
+			exit=1;
+		
 	}while(exit!=1);
-	if(isStackEmpty(inputS)==1 && isQueueEmpty(inputQ)==1){
+	
+	if(isQueueEmpty(outputQ)!=1 && isStackEmpty(outputS)!=1){
 		printf("\nOutput Stack: "); 
 		displayStack(outputS);
-		free(outputS);
+		freeStack(outputS);
 		printf("\nOutput Queue: ");
 		displayQueue(outputQ);
-		free(outputQ);
-	}
+		freeQueue(outputQ);
+	}		
 	return 0;
 }

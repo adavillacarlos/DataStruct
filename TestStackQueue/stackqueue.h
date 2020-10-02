@@ -24,14 +24,14 @@ Queue createQueue();
 Nodeptr createNode(int item);
 
 void push(Stack s,int item);
-void pop(Stack s);
+int pop(Stack s);
 void displayStack(Stack s);
 int isStackEmpty(Stack s);
 int stackTop(Stack s);
 void freeStack(Stack s);
 
 void enqueue(Queue q, int item);
-void dequeue(Queue q);
+int dequeue(Queue q);
 void displayQueue(Queue q);
 int isQueueEmpty(Queue q);
 int queueFront(Queue q);
