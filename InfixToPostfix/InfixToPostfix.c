@@ -15,7 +15,6 @@ int isValidInput(char infix[]){
 	return ans; 
 }
 
-
 void infixtopostfix(char infix[],char postfix[],Stack s){
 	int i, j=0, ans; 
 	char c; 
@@ -34,7 +33,6 @@ void infixtopostfix(char infix[],char postfix[],Stack s){
 	}
 	postfix[j] = '\0';
 }
-
 
 int precedence(char c){
 	int ans=0; 

@@ -2,7 +2,6 @@
 #include "Stack.h"
 
 int isValidInput(char infix[]);
-int isValid(char c);
 void infixtopostfix(char infix[],char postfix[],Stack s);
 int isDigit(stackItem item);
 int precedence(char c);
