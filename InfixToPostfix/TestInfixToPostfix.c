@@ -1,40 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "InfixToPostfix.h"
-
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) {
-	Stack s = createStack();
-	stackItem infix[SIZE];
-	stackItem postfix[SIZE];
-	int choice; 
-	int flag=0,ctr=0;
-	int exit = 1; 
+	Stack s = newStack();
+	Stack p = newStack();
+	char infix[SIZE];
+	char postfix[SIZE];
+	int flag=0;
+	int ask=1; 
 	do{
 		do{
-			printf("\nEnter infix: ");
+			printf("Enter infix: ");
 			fgets(infix,SIZE,stdin);
 			flag = isValidInput(infix);
 		}while(flag!=1);
-		
-		infixToPostfix(infix,postfix,s);
-		printf("Postfix: %s\n",postfix); 
-		
-		flag=isDigitPresent(postfix);
-		if(flag==1){
-			printf("Result: %d\n",postfixEval(postfix,s));
-		} else
-			printf("\nThere is an alphabet so there would be no result\n");
-		printf("Do you want to continue? (1/0): ");
-		exit = getChoice();
-		flag=0; 
-		fflush(stdin);
+		flag=0;
+		infixtopostfix(infix,postfix,s);
+		printf("%s",postfix);
+		printf("\nResult: %0.2f",postfixEvaluate(postfix,p));
+		printf("\nDo you want to continue? (1/0): ");
+		scanf("%d",&ask);
 		promptUser();
+		fflush(stdin);
 		freeStack(s);
-		
-	}while(exit!=0);
-	
+		freeStack(p);
+		system("cls");
+	}while(ask!=0);
 	return 0;
 }
-

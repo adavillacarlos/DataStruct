@@ -1,27 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "InfixToPostfix.h"
 
-int getChoice(){
-	int n; 
-	printf("\nEnter your choice: ");
-	scanf("%d",&n);
-	return n;
-}
-
-void promptUser(){
-	system("pause");
-	system("cls");
-}
-
-
-int isValidInput(stackItem infix[]){
-	int i, ans = 0; 
+int isValidInput(char infix[]){
+	int i,ans=0; 
 	for(i=0;infix[i]!='\n';i++){
-		if(isalnum(infix[i]) !=0 ||  precedence(infix[i])!=3){
-			ans=1; 
-		} else{
+		if(isDigit(infix[i])!=0 || precedence(infix[i])!=0){
+			ans = 1; 
+		} else {
 			ans = 0; 
 			break; 
 		}
@@ -30,67 +16,76 @@ int isValidInput(stackItem infix[]){
 }
 
 
-int isDigitPresent(stackItem postfix[]){
-	int i, ans = 0; 
-	for(i=0;postfix[i]!='\0';i++){
-		if(isdigit(postfix[i]) != 0 ||  precedence(postfix[i])!=3){
-			ans=1; 
-		} else{
-			ans = 0; 
-			break; 
-		}
-	}
-	return ans; 
-}
-
-int precedence(stackItem c){
-	int ans; 
-	if(c=='*' || c=='/' || c=='%')
-		ans = 2; 
-	else if(c=='+' || c=='-')
-		ans = 1; 
-	else
-		ans = 3; 
-	return ans; 
-} 
-
-void infixToPostfix(stackItem infix[],stackItem postfix[],Stack s){
-	int i,c,j=0,x;
+void infixtopostfix(char infix[],char postfix[],Stack s){
+	int i, j=0, ans; 
+	char c; 
 	for(i=0;infix[i]!='\n';i++){
 		c = infix[i];
-		if(isdigit(c)!=0){
+		if(isDigit(c)!=0){
 			postfix[j++] = c;
-		} else {
-			while(isStackEmpty(s)!=1 && precedence(c)<=precedence(stackTop(s)))
+		} else if (precedence(c)!=0){
+			while(isEmpty(s)!=1 && precedence(c) <= precedence(stackTop(s)))
 				postfix[j++] = pop(s);
 			push(s,c);
 		}
 	}
-	while(!isStackEmpty(s)){
-		postfix[j++] = pop(s);
+	while(!isEmpty(s)){
+		postfix[j++]= pop(s);
 	}
-	postfix[j]='\0';
+	postfix[j] = '\0';
 }
 
-int postfixEval(stackItem postfix[],Stack s){
-	int i,c,num,n1,n2; 
-	char nn3;
+
+int precedence(char c){
+	int ans=0; 
+	if( c == '*' || c == '/' || c == '%' ) 
+	 	ans = 2; 
+    else if (c=='+' || c=='-')
+		ans = 1; 
+	return ans; 
+}
+
+float postfixEvaluate(char postfix[],Stack p){
+	int i;
+	float ans =0; 
+	float n1,n2;
+	char c;  
 	for(i=0;postfix[i]!='\0';i++){
-		c = postfix[i]; 
-		if(isdigit(c)==1)
-			push(s,c-'0');
+		c = postfix[i];
+		if(isDigit(c))
+			push(p,c-'0');
 		else {
-			n1 = pop(s);
-			n2 = pop(s); 
-			switch(c){
-				case '+':	push(s,n1+n2);  break;
-				case '-': 	push(s,n2-n1);  break;
-				case '*':	push(s,n1*n2);  break;
-				case '/':	push(s,n2/n1);  break; 
-				case '%':	push(s,n2%n1); 	break; 
-			}
+			n1 = pop(p);
+			n2 = pop(p);
+			ans = evaluate(n1,n2,c);
+			push(p,ans);
 		}
 	}
-	return pop(s);	
+	return pop(p);
 }
 
+float evaluate(stackItem n1, stackItem n2,float c){
+	float ans = 0;
+	if(c == '*')
+		ans = n2 * n1;
+	else if(c == '+')
+		ans = n2 + n1;
+	else if(c == '-')
+		ans = n2 - n1;
+	else if(c == '/')
+		ans = n2 / (float) n1;
+	else if(c=='%'){
+		ans = (int)n2%(int)n1;
+	}
+	return ans;
+}
+
+void promptUser(){
+	printf("\n");
+	system("pause");
+	system("cls");
+}
+
+int isDigit(stackItem item){
+  return (int)item >= 48 && (int)item <= 57;
+}

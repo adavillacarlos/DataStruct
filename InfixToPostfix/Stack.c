@@ -2,52 +2,18 @@
 #include <stdlib.h>
 #include "Stack.h"
 
-Stack createStack(){
- 	Stack s = (Stack)malloc(sizeof(STACK_HEAD));
-    s->count = 0;
-    s->top = NULL;
-    return s;
+Stack newStack(){
+	Stack s = (Stack) malloc(sizeof(STACK_HEAD));
+	s->count = 0; 
+	s->top=NULL;
+	return s;
 }
 
 Nodeptr createNode(stackItem item){
 	Nodeptr ptr = (Nodeptr)malloc(sizeof(STACK_NODE));
 	ptr->data = item; 
 	ptr->next = NULL;
-	return ptr; 
-}
-
-void push(Stack s,stackItem item){
-	Nodeptr temp = createNode(item);
-	temp->next = s->top;
-	s->top = temp;
-	(s->count)++; 
-}
-
-stackItem pop(Stack s){
-	Nodeptr	temp = s->top; 
-	stackItem ans = temp->data; 
-	s->top = temp->next; 
-	temp->next = NULL;
-	free(temp);
-	(s->count)--;
-	return ans; 
-}
-
-void displayStack(Stack s){
-	Nodeptr ptr = s->top;
-	while(ptr!=NULL){
-		printf("%d ", ptr->data);
-		ptr = ptr->next; 
-	}
-	printf("\n");
-}
-
-stackItem isStackEmpty(Stack s){
-	return s->top == NULL;
-}
-
-stackItem stackTop(Stack s){
-	return s->top->data;	
+	return ptr;
 }
 
 void freeStack(Stack s){
@@ -60,3 +26,39 @@ void freeStack(Stack s){
 		(s->count)--;
 	}
 }
+
+void push(Stack s,stackItem item){
+	Nodeptr temp = createNode(item);
+	temp->next = s->top;
+	s->top = temp;
+	(s->count)++; 
+}
+
+stackItem pop(Stack s){
+	Nodeptr temp; 
+	temp = s->top; 
+	stackItem item = temp->data; 
+	s->top = temp->next; 
+	temp->next = NULL;
+	free(temp);
+	(s->count)--;
+	return item;
+}
+
+stackItem stackTop(Stack s){
+	return s->top->data;	
+}
+
+int isEmpty(Stack s){
+	return s->top == NULL;
+}
+
+void display(Stack s){
+	Nodeptr ptr = s->top;
+	while(ptr!=NULL){
+		printf("%c ", ptr->data);
+		ptr = ptr->next; 
+	}
+	printf("\n");
+}
+

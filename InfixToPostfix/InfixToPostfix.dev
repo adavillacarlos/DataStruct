@@ -50,8 +50,8 @@ ProductVersion=
 AutoIncBuildNr=0
 SyncProduct=1
 
-[Unit1]
-FileName=TestInfixToPostfix.c
+[Unit2]
+FileName=InfixToPostfix.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -60,8 +60,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit2]
-FileName=InfixToPostfix.h
+[Unit1]
+FileName=TestInfixToPostfix.c
 CompileCpp=0
 Folder=
 Compile=1

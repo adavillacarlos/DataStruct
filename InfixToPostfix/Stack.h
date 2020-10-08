@@ -7,19 +7,19 @@ typedef struct{
 
 typedef STACK_HEAD* Stack;
 
-typedef char stackItem; 
+typedef float stackItem; 
 
 typedef struct node{
 	stackItem data;
 	Nodeptr next;
 }STACK_NODE;
 
-Stack createStack();
-Nodeptr createNode(stackItem item);
-void push(Stack s,stackItem item);
-stackItem pop(Stack s);
-void displayStack(Stack s);
-stackItem isStackEmpty(Stack s); 
-stackItem stackTop(Stack s); 
-void freeStack(Stack s); 
 
+Stack newStack();
+void freeStack(Stack s);
+void push(Stack s,stackItem item); 
+stackItem pop(Stack s); 
+stackItem stackTop(Stack s); 
+int isEmpty(Stack s);
+void display(Stack s);
+Nodeptr createNode(stackItem item);
