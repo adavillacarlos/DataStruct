@@ -62,7 +62,7 @@ float postfixEvaluate(char postfix[],Stack p){
 	return pop(p);
 }
 
-float evaluate(stackItem n1, stackItem n2,float c){
+float evaluate(stackItem n1, stackItem n2,char c){
 	float ans = 0;
 	if(c == '*')
 		ans = n2 * n1;
@@ -71,7 +71,7 @@ float evaluate(stackItem n1, stackItem n2,float c){
 	else if(c == '-')
 		ans = n2 - n1;
 	else if(c == '/')
-		ans = n2 / (float) n1;
+		ans = n2 / n1;
 	else if(c=='%'){
 		ans = (int)n2%(int)n1;
 	}
@@ -87,3 +87,65 @@ void promptUser(){
 int isDigit(stackItem item){
   return (int)item >= 48 && (int)item <= 57;
 }
+
+
+Stack newStack(){
+	Stack s = (Stack) malloc(sizeof(STACK_HEAD));
+	s->count = 0; 
+	s->top=NULL;
+	return s;
+}
+
+Nodeptr createNode(stackItem item){
+	Nodeptr ptr = (Nodeptr)malloc(sizeof(STACK_NODE));
+	ptr->data = item; 
+	ptr->next = NULL;
+	return ptr;
+}
+
+void freeStack(Stack s){
+	Nodeptr temp;
+	while(s->top!=NULL){
+		temp = s->top;
+		s->top = s->top->next;
+		temp->next = NULL; 
+		free(temp);
+		(s->count)--;
+	}
+}
+
+void push(Stack s,stackItem item){
+	Nodeptr temp = createNode(item);
+	temp->next = s->top;
+	s->top = temp;
+	(s->count)++; 
+}
+
+stackItem pop(Stack s){
+	Nodeptr temp; 
+	temp = s->top; 
+	stackItem item = temp->data; 
+	s->top = temp->next; 
+	temp->next = NULL;
+	free(temp);
+	(s->count)--;
+	return item;
+}
+
+stackItem stackTop(Stack s){
+	return s->top->data;	
+}
+
+int isEmpty(Stack s){
+	return s->top == NULL;
+}
+
+void display(Stack s){
+	Nodeptr ptr = s->top;
+	while(ptr!=NULL){
+		printf("%c ", ptr->data);
+		ptr = ptr->next; 
+	}
+	printf("\n");
+}
+
